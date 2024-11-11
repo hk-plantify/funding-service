@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: funding
+  data:
+    mongodb:
+      host: localhost
+      prot: 27017
+      database: FundingTestDB
