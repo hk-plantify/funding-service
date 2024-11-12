@@ -1,17 +1,13 @@
 package com.plantify.funding.service;
 
 import com.plantify.funding.domain.dto.request.FundingRequest;
-import com.plantify.funding.domain.dto.request.MyFundingRequest;
 import com.plantify.funding.domain.dto.response.FundingResponse;
-import com.plantify.funding.domain.dto.response.MyFundingResponse;
 import com.plantify.funding.domain.entity.Funding;
 import com.plantify.funding.repository.FundingRepository;
-import com.plantify.funding.repository.MyFundingRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
