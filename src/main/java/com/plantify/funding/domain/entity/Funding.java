@@ -27,6 +27,7 @@ public class Funding {
     private Long targetAmount;
     private Double percent;
     private Status status;
+    private Category category;
     private LocalDateTime fundingStartDate;
     private LocalDateTime fundingEndDate;
     private LocalDateTime donationStartDate;

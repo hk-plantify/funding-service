@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Document(collection = "myFunding")
 @Getter
@@ -20,6 +20,6 @@ public class MyFunding {
     private Long myFundingId;
     private Long userId;
     private Long price;
-    private Date createdAt;
+    private LocalDateTime createdAt;
     private Status status;
 }
