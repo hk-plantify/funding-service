@@ -19,7 +19,6 @@ public class FundingServiceImpl implements FundingService {
     private final FundingRepository fundingRepository;
     private final AuthenticationService authenticationService;
 
-
     @Override
     public List<FundingResponse> getAllFundings() {
         return fundingRepository.findAll()
@@ -73,7 +72,6 @@ public class FundingServiceImpl implements FundingService {
     @Override
     public void deleteFunding(String authorizationHeader, Long fundingId) {
         authenticationService.validateRole(authorizationHeader);
-        fundingRepository.deleteById(fundingId);
         Funding funding = fundingRepository.findById(fundingId)
                 .orElseThrow(() -> new ApplicationException(FundingErrorCode.FUNDING_NOT_FOUND));
         fundingRepository.delete(funding);
