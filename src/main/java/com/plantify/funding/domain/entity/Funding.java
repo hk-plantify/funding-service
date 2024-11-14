@@ -18,7 +18,6 @@ public class Funding {
 
     @Id
     private Long fundingId;
-    private Long organizationId;
     private String title;
     private String content;
     private String image;
