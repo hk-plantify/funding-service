@@ -9,5 +9,4 @@ class FundingApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-
 }
