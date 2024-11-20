@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 
 @Document(collection = "funding")
 @Getter
-@Builder
+@Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
 public class Funding {
