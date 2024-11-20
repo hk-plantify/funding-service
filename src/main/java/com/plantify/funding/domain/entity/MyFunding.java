@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 
 @Document(collection = "myFunding")
 @Getter
-@Builder
+@Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
 public class MyFunding extends BaseEntity {
