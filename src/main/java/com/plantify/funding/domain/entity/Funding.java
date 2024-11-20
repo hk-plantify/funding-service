@@ -1,5 +1,7 @@
 package com.plantify.funding.domain.entity;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -24,6 +26,7 @@ public class Funding {
     private Long curAmount;
     private Long targetAmount;
     private Double percent;
+    @JsonSerialize(using = ToStringSerializer.class)
     private Status status;
     private Category category;
     private LocalDateTime fundingStartDate;
