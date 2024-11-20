@@ -1,7 +1,6 @@
 package com.plantify.funding.contoller.myFunding;
 
 import com.plantify.funding.domain.dto.myFunding.MyFundingAdminResponse;
-import com.plantify.funding.domain.dto.response.MyFundingResponse;
 import com.plantify.funding.global.response.ApiResponse;
 import com.plantify.funding.service.myFunding.MyFundingAdminService;
 import lombok.RequiredArgsConstructor;

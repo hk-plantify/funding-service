@@ -1,7 +1,7 @@
 package com.plantify.funding.config;
 
 import com.plantify.funding.client.AuthServiceClient;
-import com.plantify.funding.domain.dto.response.AuthUserResponse;
+import com.plantify.funding.domain.dto.AuthUserResponse;
 import com.plantify.funding.global.response.ApiResponse;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

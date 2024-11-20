@@ -1,8 +1,8 @@
 package com.plantify.funding.domain.dto.funding;
 
-import ch.qos.logback.core.status.Status;
 import com.plantify.funding.domain.entity.Category;
 import com.plantify.funding.domain.entity.Funding;
+import com.plantify.funding.domain.entity.Status;
 
 public record FundingUserResponse(
         Long fundingId,

@@ -1,6 +1,6 @@
 package com.plantify.funding.client;
 
-import com.plantify.funding.domain.dto.response.AuthUserResponse;
+import com.plantify.funding.domain.dto.AuthUserResponse;
 import com.plantify.funding.global.response.ApiResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;

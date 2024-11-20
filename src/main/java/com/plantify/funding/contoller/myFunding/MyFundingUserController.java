@@ -2,7 +2,6 @@ package com.plantify.funding.contoller.myFunding;
 
 import com.plantify.funding.domain.dto.myFunding.MyFundingUserRequest;
 import com.plantify.funding.domain.dto.myFunding.MyFundingUserResponse;
-import com.plantify.funding.domain.dto.response.MyFundingResponse;
 import com.plantify.funding.global.response.ApiResponse;
 import com.plantify.funding.service.myFunding.MyFundingUserService;
 import lombok.RequiredArgsConstructor;
@@ -36,9 +35,9 @@ public class MyFundingUserController {
 
     // 펀딩에 참여
     @PostMapping
-    public ResponseEntity<ApiResponse<MyFundingResponse>> createMyFunding(
+    public ResponseEntity<ApiResponse<MyFundingUserResponse>> createMyFunding(
             @RequestBody MyFundingUserRequest request) {
-        MyFundingResponse response = myFundingUserService.createMyFunding(request);
+        MyFundingUserResponse response = myFundingUserService.createMyFunding(request);
         return ResponseEntity.ok(ApiResponse.ok(response));
     }
 

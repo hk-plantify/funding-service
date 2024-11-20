@@ -1,6 +1,6 @@
 package com.plantify.funding.util;
 
-import com.plantify.funding.domain.dto.response.AuthUserResponse;
+import com.plantify.funding.domain.dto.AuthUserResponse;
 import com.plantify.funding.global.exception.ApplicationException;
 import com.plantify.funding.global.exception.errorcode.AuthErrorCode;
 import org.springframework.security.core.Authentication;
