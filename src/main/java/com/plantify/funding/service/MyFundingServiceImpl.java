@@ -21,7 +21,6 @@ public class MyFundingServiceImpl implements MyFundingService{
 
     private final MyFundingRepository myFundingRepository;
     private final FundingRepository fundingRepository;
-    private final AuthenticationService authenticationService;
 
     @Override
     public List<MyFundingResponse> getAllMyFundings(String authorizationHeader) {
