@@ -1,7 +1,7 @@
 package com.plantify.funding.config;
 
-import com.plantify.funding.contoller.client.AuthServiceClient;
-import com.plantify.funding.domain.dto.response.UserResponse;
+import com.plantify.funding.client.AuthServiceClient;
+import com.plantify.funding.domain.dto.response.AuthUserResponse;
 import com.plantify.funding.global.response.ApiResponse;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -32,10 +32,10 @@ public class JwtFilter extends OncePerRequestFilter {
         String token = resolveToken(request);
         if (token != null) {
             try {
-                ApiResponse<UserResponse> authResponse = authServiceClient.getUserInfo("Bearer " + token);
+                ApiResponse<AuthUserResponse> authResponse = authServiceClient.getUserInfo("Bearer " + token);
 
                 if (authResponse.getStatus() == HttpStatus.OK && authResponse.getData() != null) {
-                    UserResponse userResponse = authResponse.getData();
+                    AuthUserResponse userResponse = authResponse.getData();
                     Authentication authentication = getAuthentication(userResponse);
                     SecurityContextHolder.getContext().setAuthentication(authentication);
                 }
@@ -46,9 +46,9 @@ public class JwtFilter extends OncePerRequestFilter {
         filterChain.doFilter(request, response);
     }
 
-    private Authentication getAuthentication(UserResponse userResponse) {
+    private Authentication getAuthentication(AuthUserResponse userResponse) {
         return new UsernamePasswordAuthenticationToken(
-                userResponse.kakaoId(), null,
+                userResponse.userId(), null,
                 List.of(new SimpleGrantedAuthority("ROLE_" + userResponse.role()))
         );
     }

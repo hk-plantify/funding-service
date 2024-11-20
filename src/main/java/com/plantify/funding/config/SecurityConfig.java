@@ -21,23 +21,9 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers(HttpMethod.GET, "/fundings", "/fundings/**")
+                        .requestMatchers(HttpMethod.GET, "/v1/fundings", "/v1/fundings/*", "/v1/fundings/organizations")
                         .permitAll()
-
-                        // /fundings/** - POST, PUT, DELETE
-                        .requestMatchers(HttpMethod.POST, "/fundings/**")
-                        .hasAnyRole("MANAGER", "ADMIN")
-                        .requestMatchers(HttpMethod.PUT, "/fundings/**")
-                        .hasAnyRole("MANAGER", "ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/fundings/**")
-                        .hasAnyRole("MANAGER", "ADMIN")
-
-                        // /fundings/my-fundings/** - GET, POST, DELETE
-                        .requestMatchers(HttpMethod.GET, "/fundings/my-fundings/**")
-                        .hasAnyRole("USER", "MANAGER", "ADMIN")
-                        .requestMatchers(HttpMethod.POST, "/fundings/my-fundings/**")
-                        .hasAnyRole("USER", "MANAGER", "ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/fundings/my-fundings/**")
+                        .requestMatchers(HttpMethod.GET, "/v1/admin/**")
                         .hasAnyRole("USER", "MANAGER", "ADMIN")
 
                         .anyRequest()
