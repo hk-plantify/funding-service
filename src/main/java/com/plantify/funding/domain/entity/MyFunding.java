@@ -16,16 +16,12 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class MyFunding {
+public class MyFunding extends BaseEntity {
 
     @Id
     private Long myFundingId;
     private Long userId;
     private Long fundingId;
     private Long price;
-    @CreatedDate
-    private LocalDateTime createdAt;
-    @LastModifiedDate
-    private LocalDateTime updatedAt;
     private Status status;
 }

@@ -9,5 +9,4 @@ public enum Category {
     GLOBAL,
     ELDERLY,
     SOCIAL,
-    ALL
 }
