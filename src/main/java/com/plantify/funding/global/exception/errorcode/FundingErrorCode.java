@@ -1,8 +1,10 @@
 package com.plantify.funding.global.exception.errorcode;
 
 import com.plantify.funding.global.exception.ErrorCode;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 
+@RequiredArgsConstructor
 public enum FundingErrorCode implements ErrorCode {
 
     FUNDING_NOT_FOUND(HttpStatus.NOT_FOUND, "해당 펀딩을 찾을 수 없습니다."),
@@ -13,11 +15,6 @@ public enum FundingErrorCode implements ErrorCode {
 
     private final HttpStatus httpStatus;
     private final String message;
-
-    FundingErrorCode(HttpStatus httpStatus, String message) {
-        this.httpStatus = httpStatus;
-        this.message = message;
-    }
 
     @Override
     public HttpStatus getHttpStatus() {
