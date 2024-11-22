@@ -15,7 +15,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Organization extends BaseEntity {
 
     @Id
-    private Long organizationId;
+    private String organizationId;
     private String name;
     private String content;
 }

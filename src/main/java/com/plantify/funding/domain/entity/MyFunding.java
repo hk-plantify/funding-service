@@ -19,9 +19,9 @@ import java.time.LocalDateTime;
 public class MyFunding extends BaseEntity {
 
     @Id
-    private Long myFundingId;
+    private String myFundingId;
     private Long userId;
-    private Long fundingId;
+    private String fundingId;
     private Long price;
     private Status status;
 }
