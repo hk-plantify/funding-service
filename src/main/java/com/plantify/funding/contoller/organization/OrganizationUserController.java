@@ -19,8 +19,8 @@ public class OrganizationUserController {
     private final OrganizationUserService organizationUserService;
 
     @GetMapping
-    public ResponseEntity<ApiResponse<List<OrganizationUserResponse>>> getAllOrganizations() {
+    public ApiResponse<List<OrganizationUserResponse>> getAllOrganizations() {
         List<OrganizationUserResponse> organizations = organizationUserService.getAllOrganizations();
-        return ResponseEntity.ok(ApiResponse.ok(organizations));
+        return ApiResponse.ok(organizations);
     }
 }

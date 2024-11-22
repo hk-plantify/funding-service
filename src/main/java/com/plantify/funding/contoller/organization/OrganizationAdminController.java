@@ -2,11 +2,9 @@ package com.plantify.funding.contoller.organization;
 
 import com.plantify.funding.domain.dto.organization.OrganizationAdminRequest;
 import com.plantify.funding.domain.dto.organization.OrganizationAdminResponse;
-import com.plantify.funding.domain.dto.organization.OrganizationUserResponse;
 import com.plantify.funding.global.response.ApiResponse;
 import com.plantify.funding.service.organization.OrganizationAdminService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -17,22 +15,22 @@ public class OrganizationAdminController {
     private final OrganizationAdminService organizationAdminService;
 
     @PostMapping
-    public ResponseEntity<ApiResponse<OrganizationAdminResponse>> createOrganization(
+    public ApiResponse<OrganizationAdminResponse> createOrganization(
             @RequestBody OrganizationAdminRequest request) {
         OrganizationAdminResponse response = organizationAdminService.createOrganization(request);
-        return ResponseEntity.ok(ApiResponse.ok(response));
+        return ApiResponse.ok(response);
     }
 
     @PutMapping("/{organizationId}")
-    public ResponseEntity<ApiResponse<OrganizationAdminResponse>> updateOrganization(
-            @PathVariable Long organizationId, @RequestBody OrganizationAdminRequest request) {
+    public ApiResponse<OrganizationAdminResponse> updateOrganization(
+            @PathVariable String organizationId, @RequestBody OrganizationAdminRequest request) {
         OrganizationAdminResponse response = organizationAdminService.updateOrganization(organizationId, request);
-        return ResponseEntity.ok(ApiResponse.ok(response));
+        return ApiResponse.ok(response);
     }
 
     @DeleteMapping("/{organizationId}")
-    public ResponseEntity<ApiResponse<Void>> deleteOrganization(@PathVariable Long organizationId) {
+    public ApiResponse<Void> deleteOrganization(@PathVariable String organizationId) {
         organizationAdminService.deleteOrganization(organizationId);
-        return ResponseEntity.ok(ApiResponse.ok());
+        return ApiResponse.ok();
     }
 }
