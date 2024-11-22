@@ -24,34 +24,25 @@ public class FundingAdminServiceImpl implements FundingAdminService {
     }
 
     @Override
-    public FundingAdminResponse updateFunding(Long fundingId, FundingAdminRequest request) {
+    public FundingAdminResponse updateFunding(String fundingId, FundingAdminRequest request) {
         Funding funding = fundingRepository.findById(fundingId)
                 .orElseThrow(() -> new ApplicationException(FundingErrorCode.FUNDING_NOT_FOUND));
 
-        Funding updatedFunding = funding.toBuilder()
-                .title(request.title())
-                .content(request.content())
-                .image(request.image())
-                .targetAmount(request.targetAmount())
-                .fundingStartDate(request.fundingStartDate())
-                .fundingEndDate(request.fundingEndDate())
-                .donationStartDate(request.donationStartDate())
-                .donationEndDate(request.donationEndDate())
-                .build();
+        Funding updatedFunding = request.updatedFunding(funding);
 
         fundingRepository.save(updatedFunding);
         return FundingAdminResponse.from(updatedFunding);
     }
 
     @Override
-    public void deleteFunding(Long fundingId) {
+    public void deleteFunding(String fundingId) {
         Funding funding = fundingRepository.findById(fundingId)
                 .orElseThrow(() -> new ApplicationException(FundingErrorCode.FUNDING_NOT_FOUND));
         fundingRepository.delete(funding);
     }
 
     @Override
-    public FundingAdminResponse updateFundingStatus(Long fundingId, Status status) {
+    public FundingAdminResponse updateFundingStatus(String fundingId, Status status) {
         Funding funding = fundingRepository.findById(fundingId)
                 .orElseThrow(() -> new ApplicationException(FundingErrorCode.FUNDING_NOT_FOUND));
 

@@ -1,6 +1,7 @@
 package com.plantify.funding.service.funding;
 
 import com.plantify.funding.domain.dto.funding.FundingUserResponse;
+import com.plantify.funding.domain.entity.Category;
 import com.plantify.funding.domain.entity.Funding;
 import com.plantify.funding.global.exception.ApplicationException;
 import com.plantify.funding.global.exception.errorcode.FundingErrorCode;
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class FundingUserServiceImpl implements FundingUserService {
+public class FundingUserServiceImpl implements FundingUserService, InternalService {
 
     private final FundingRepository fundingRepository;
 
@@ -23,9 +24,26 @@ public class FundingUserServiceImpl implements FundingUserService {
     }
 
     @Override
-    public FundingUserResponse getFundingById(Long fundingId) {
+    public FundingUserResponse getFundingById(String fundingId) {
         Funding funding = fundingRepository.findById(fundingId)
                 .orElseThrow(() -> new ApplicationException(FundingErrorCode.FUNDING_NOT_FOUND));
         return FundingUserResponse.from(funding);
+    }
+
+    @Override
+    public Page<FundingUserResponse> getFundingByCategory(Category category, Pageable pageable) {
+        return fundingRepository.findByCategory(category, pageable)
+                .map(FundingUserResponse::from);
+    }
+
+    @Override
+    public void updateFundingAmount(String fundingId, Long amount) {
+        Funding funding = fundingRepository.findById(fundingId)
+                .orElseThrow(() -> new ApplicationException(FundingErrorCode.FUNDING_NOT_FOUND));
+        Funding updatedFunding = funding.toBuilder()
+                .curAmount(funding.getCurAmount() + amount)
+                .build();
+
+        fundingRepository.save(updatedFunding);
     }
 }

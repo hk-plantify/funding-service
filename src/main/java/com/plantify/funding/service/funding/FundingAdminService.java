@@ -7,7 +7,7 @@ import com.plantify.funding.domain.entity.Status;
 public interface FundingAdminService {
 
     FundingAdminResponse createFunding(FundingAdminRequest request);
-    FundingAdminResponse updateFunding(Long fundingId, FundingAdminRequest request);
-    void deleteFunding(Long fundingId);
-    FundingAdminResponse updateFundingStatus(Long fundingId, Status status);
+    FundingAdminResponse updateFunding(String fundingId, FundingAdminRequest request);
+    void deleteFunding(String fundingId);
+    FundingAdminResponse updateFundingStatus(String fundingId, Status status);
 }

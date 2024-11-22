@@ -6,7 +6,6 @@ import com.plantify.funding.domain.entity.Status;
 import com.plantify.funding.global.response.ApiResponse;
 import com.plantify.funding.service.funding.FundingAdminService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -18,31 +17,31 @@ public class FundingAdminController {
 
     // 펀딩 생성
     @PostMapping
-    public ResponseEntity<ApiResponse<FundingAdminResponse>> createFunding(@RequestBody FundingAdminRequest request) {
+    public ApiResponse<FundingAdminResponse> createFunding(@RequestBody FundingAdminRequest request) {
         FundingAdminResponse response = fundingAdminService.createFunding(request);
-        return ResponseEntity.ok(ApiResponse.ok(response));
+        return ApiResponse.ok(response);
     }
 
     // 펀딩 수정
     @PutMapping("/{fundingId}")
-    public ResponseEntity<ApiResponse<FundingAdminResponse>> updateFunding(
-            @PathVariable Long fundingId, @RequestBody FundingAdminRequest request) {
+    public ApiResponse<FundingAdminResponse> updateFunding(
+            @PathVariable String fundingId, @RequestBody FundingAdminRequest request) {
         FundingAdminResponse response = fundingAdminService.updateFunding(fundingId, request);
-        return ResponseEntity.ok(ApiResponse.ok(response));
+        return ApiResponse.ok(response);
     }
 
     // 펀딩 삭제
     @DeleteMapping("/{fundingId}")
-    public ResponseEntity<ApiResponse<Void>> deleteFunding(@PathVariable Long fundingId) {
+    public ApiResponse<Void> deleteFunding(@PathVariable String fundingId) {
         fundingAdminService.deleteFunding(fundingId);
-        return ResponseEntity.ok(ApiResponse.ok());
+        return ApiResponse.ok();
     }
 
     // 펀딩 상태 변경
     @PutMapping("/{fundingId}/status")
-    public ResponseEntity<ApiResponse<FundingAdminResponse>> updateFundingStatus(
-            @PathVariable Long fundingId, @RequestParam Status status) {
+    public ApiResponse<FundingAdminResponse> updateFundingStatus(
+            @PathVariable String fundingId, @RequestParam Status status) {
         FundingAdminResponse response = fundingAdminService.updateFundingStatus(fundingId, status);
-        return ResponseEntity.ok(ApiResponse.ok(response));
+        return ApiResponse.ok(response);
     }
 }
