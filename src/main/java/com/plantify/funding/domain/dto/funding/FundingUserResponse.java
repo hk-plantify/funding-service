@@ -4,8 +4,11 @@ import com.plantify.funding.domain.entity.Category;
 import com.plantify.funding.domain.entity.Funding;
 import com.plantify.funding.domain.entity.Status;
 
+import java.time.LocalDateTime;
+import java.util.Date;
+
 public record FundingUserResponse(
-        Long fundingId,
+        String fundingId,
         String title,
         String content,
         String image,
@@ -13,7 +16,11 @@ public record FundingUserResponse(
         Long targetAmount,
         Double percent,
         Status status,
-        Category category
+        Category category,
+        LocalDateTime fundingStartDate,
+        LocalDateTime fundingEndDate,
+        LocalDateTime donationStartDate,
+        LocalDateTime donationEndDate
 ) {
     public static FundingUserResponse from(Funding funding) {
         return new FundingUserResponse(
@@ -25,7 +32,11 @@ public record FundingUserResponse(
                 funding.getTargetAmount(),
                 funding.getPercent(),
                 funding.getStatus(),
-                funding.getCategory()
+                funding.getCategory(),
+                funding.getFundingStartDate(),
+                funding.getFundingEndDate(),
+                funding.getDonationStartDate(),
+                funding.getDonationEndDate()
         );
     }
 }

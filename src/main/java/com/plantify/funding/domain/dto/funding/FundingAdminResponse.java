@@ -5,9 +5,10 @@ import com.plantify.funding.domain.entity.Funding;
 import com.plantify.funding.domain.entity.Status;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 public record FundingAdminResponse(
-        Long fundingId,
+        String fundingId,
         String title,
         String content,
         String image,
