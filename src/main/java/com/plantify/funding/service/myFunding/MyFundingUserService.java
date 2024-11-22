@@ -8,7 +8,7 @@ import org.springframework.data.domain.Pageable;
 public interface MyFundingUserService {
 
     Page<MyFundingUserResponse> getMyFunding(Pageable pageable);
-    MyFundingUserResponse getMyFundingDetails(Long myFundingId);
+    MyFundingUserResponse getMyFundingDetails(String myFundingId);
     MyFundingUserResponse createMyFunding(MyFundingUserRequest request);
-    MyFundingUserResponse updateMyFunding(Long myFundingId, MyFundingUserRequest request);
+    MyFundingUserResponse updateMyFunding(String myFundingId, MyFundingUserRequest request);
 }
