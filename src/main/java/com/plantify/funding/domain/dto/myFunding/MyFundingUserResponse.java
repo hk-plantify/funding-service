@@ -6,8 +6,8 @@ import com.plantify.funding.domain.entity.Status;
 import java.time.LocalDateTime;
 
 public record MyFundingUserResponse(
-        Long myFundingId,
-        Long fundingId,
+        String myFundingId,
+        String fundingId,
         Long price,
         Status status,
         LocalDateTime createdAt,

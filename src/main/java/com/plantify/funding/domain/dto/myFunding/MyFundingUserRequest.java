@@ -4,7 +4,7 @@ import com.plantify.funding.domain.entity.MyFunding;
 import com.plantify.funding.domain.entity.Status;
 
 public record MyFundingUserRequest(
-        Long fundingId,
+        String fundingId,
         Long price
 ) {
     public MyFunding toEntity(Long userId) {
