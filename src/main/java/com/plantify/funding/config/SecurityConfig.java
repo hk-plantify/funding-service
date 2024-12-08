@@ -3,7 +3,6 @@ package com.plantify.funding.config;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -19,18 +18,26 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf(AbstractHttpConfigurer::disable)
+        http.formLogin(AbstractHttpConfigurer::disable)
+                .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request -> request
                         .requestMatchers(
                                 "/swagger-ui/**",
                                 "/v3/api-docs/**",
                                 "/swagger-ui.html"
+//                                "/v1/admin/**"
                         ).permitAll()
-                        .requestMatchers(HttpMethod.GET, "/v1/funding", "/v1/funding/*", "/v1/funding/organizations")
+                        .requestMatchers("/v1/admin/**")
+                        .hasAnyRole("MANAGER", "ADMIN")
+                        .requestMatchers("v1/funding/my-funding", "/v1/funding/my-funding/**")
+                        .hasAnyRole("USER")
+                        .requestMatchers(
+                                "/v1/funding",
+                                "/v1/funding/{fundingId}",
+                                "/v1/funding/category/{categoryId}",
+                                "/v1/funding/organizations"
+                        )
                         .permitAll()
-                        .requestMatchers(HttpMethod.GET, "/v1/admin/**")
-                        .hasAnyRole("USER", "MANAGER", "ADMIN")
-
                         .anyRequest()
                         .authenticated()
                 )

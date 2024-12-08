@@ -34,12 +34,11 @@ public class JwtFilter extends OncePerRequestFilter {
             try {
                 ApiResponse<AuthUserResponse> authResponse = authServiceClient.getUserInfo("Bearer " + token);
 
-                if (authResponse.getStatus() == HttpStatus.OK && authResponse.getData() != null) {
+                if (authResponse.getStatus() == HttpStatus.OK.value() && authResponse.getData() != null) {
                     AuthUserResponse userResponse = authResponse.getData();
                     Authentication authentication = getAuthentication(userResponse);
                     SecurityContextHolder.getContext().setAuthentication(authentication);
                 }
-
             } catch (Exception e) {}
         }
 
