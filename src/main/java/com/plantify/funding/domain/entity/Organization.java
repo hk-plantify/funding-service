@@ -1,13 +1,12 @@
 package com.plantify.funding.domain.entity;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "organization")
+@Entity
 @Getter
 @Builder(toBuilder = true)
 @AllArgsConstructor
@@ -15,7 +14,13 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Organization extends BaseEntity {
 
     @Id
-    private String organizationId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(unique = true, nullable = false)
+    private Long organizationId;
+
+    @Column(nullable = false)
     private String name;
+
+    @Column(nullable = false)
     private String content;
 }

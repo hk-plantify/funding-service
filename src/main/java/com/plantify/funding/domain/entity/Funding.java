@@ -1,20 +1,14 @@
 package com.plantify.funding.domain.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
-@Document(collection = "funding")
+@Entity
 @Getter
 @Builder(toBuilder = true)
 @AllArgsConstructor
@@ -22,34 +16,55 @@ import java.util.Date;
 public class Funding {
 
     @Id
-    private String fundingId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(unique = true, nullable = false)
+    private Long fundingId;
+
+    @Column(nullable = false)
     private String title;
+
     private String content;
+
     private String image;
 
-    @JsonProperty("curAmount")
     private Long curAmount;
 
-    @JsonProperty("targetAmount")
     private Long targetAmount;
 
     private Double percent;
 
-    @JsonSerialize(using = ToStringSerializer.class)
+    @Enumerated(EnumType.STRING)
     private Status status;
 
-    @JsonSerialize(using = ToStringSerializer.class)
+    @Enumerated(EnumType.STRING)
     private Category category;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime fundingStartDate;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime fundingEndDate;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime donationStartDate;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime donationEndDate;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "organizationId", nullable = false)
+    private Organization organization;
+
+    public Funding updateStatus(Status status) {
+        this.status = status;
+        return this;
+    }
+
+    public Funding increase(long amount) {
+        this.curAmount += amount;
+        this.percent = ((double) this.curAmount / this.targetAmount) * 100;
+        return this;
+    }
+
+    public Funding decrease(long curAmount) {
+        this.curAmount -= curAmount;
+        this.percent = ((double) this.curAmount / this.targetAmount) * 100;
+        return this;
+    }
 }
