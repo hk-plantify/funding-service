@@ -23,4 +23,4 @@ auth:
     url: http://auth-service.auth.svc:8080
 pay:
   service:
-    url: http://pay-service:pay.svc:8080
+    url: http://pay-service.pay.svc:8080
