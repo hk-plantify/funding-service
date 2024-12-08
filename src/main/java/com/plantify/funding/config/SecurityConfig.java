@@ -34,7 +34,7 @@ public class SecurityConfig {
                         .requestMatchers(
                                 "/v1/funding",
                                 "/v1/funding/{fundingId}",
-                                "/v1/funding/category/{categoryId}",
+                                "/v1/funding/category/{category}",
                                 "/v1/funding/organizations"
                         )
                         .permitAll()
