@@ -1,25 +1,26 @@
 package com.plantify.funding.domain.entity;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Date;
-
-@Document(collection = "organization")
+@Entity
 @Getter
-@Builder
+@Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public class Organization {
+public class Organization extends BaseEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(unique = true, nullable = false)
     private Long organizationId;
+
+    @Column(nullable = false)
     private String name;
+
+    @Column(nullable = false)
     private String content;
-    private Date createdAt;
-    private Date updatedAt;
 }

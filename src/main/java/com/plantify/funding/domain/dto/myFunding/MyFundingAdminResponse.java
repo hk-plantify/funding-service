@@ -1,24 +1,26 @@
-package com.plantify.funding.domain.dto.response;
+package com.plantify.funding.domain.dto.myFunding;
 
 import com.plantify.funding.domain.entity.MyFunding;
 import com.plantify.funding.domain.entity.Status;
 
 import java.time.LocalDateTime;
 
-public record MyFundingResponse(
+public record MyFundingAdminResponse(
         Long myFundingId,
         Long userId,
+        Long fundingId,
         Long price,
         LocalDateTime createdAt,
-        Status status
+        LocalDateTime updatedAt
 ) {
-    public static MyFundingResponse from(MyFunding myFunding) {
-        return new MyFundingResponse(
+    public static MyFundingAdminResponse from(MyFunding myFunding) {
+        return new MyFundingAdminResponse(
                 myFunding.getMyFundingId(),
                 myFunding.getUserId(),
+                myFunding.getFunding().getFundingId(),
                 myFunding.getPrice(),
                 myFunding.getCreatedAt(),
-                myFunding.getStatus()
+                myFunding.getUpdatedAt()
         );
     }
 }

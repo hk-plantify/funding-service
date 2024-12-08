@@ -1,6 +1,8 @@
 package com.plantify.funding.domain.entity;
 
-public enum Category {
+import java.io.Serializable;
+
+public enum Category implements Serializable {
 
     CHILDREN,
     ANIMAL,
@@ -9,5 +11,4 @@ public enum Category {
     GLOBAL,
     ELDERLY,
     SOCIAL,
-    ALL
 }

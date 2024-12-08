@@ -1,10 +1,11 @@
 package com.plantify.funding.domain.entity;
 
-public enum Status {
+import java.io.Serializable;
 
-    FUNDING_IN_PROGRESS,
-    FUNDING_COMPLETED,
-    FUNDING_CANCELED,
-    DONATION_IN_PROGRESS,
-    DONATION_COMPLETED
+public enum Status implements Serializable {
+
+    INPROGRESS,
+    COMPLETED,
+    DELIVERING,
+    DELIVERED
 }

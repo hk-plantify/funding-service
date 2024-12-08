@@ -1,14 +1,14 @@
-package com.plantify.funding.domain.dto.response;
+package com.plantify.funding.domain.dto.funding;
 
 import com.plantify.funding.domain.entity.Category;
 import com.plantify.funding.domain.entity.Funding;
 import com.plantify.funding.domain.entity.Status;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
-public record FundingResponse(
+public record FundingAdminResponse(
         Long fundingId,
-        Long organizationId,
         String title,
         String content,
         String image,
@@ -20,13 +20,12 @@ public record FundingResponse(
         LocalDateTime fundingStartDate,
         LocalDateTime fundingEndDate,
         LocalDateTime donationStartDate,
-        LocalDateTime donationEndDate
+        LocalDateTime donationEndDate,
+        String organizationName
 ) {
-
-    public static FundingResponse from(Funding funding) {
-        return new FundingResponse(
+    public static FundingAdminResponse from(Funding funding) {
+        return new FundingAdminResponse(
                 funding.getFundingId(),
-                funding.getOrganizationId(),
                 funding.getTitle(),
                 funding.getContent(),
                 funding.getImage(),
@@ -38,7 +37,8 @@ public record FundingResponse(
                 funding.getFundingStartDate(),
                 funding.getFundingEndDate(),
                 funding.getDonationStartDate(),
-                funding.getDonationEndDate()
+                funding.getDonationEndDate(),
+                funding.getOrganization().getName()
         );
     }
 }
