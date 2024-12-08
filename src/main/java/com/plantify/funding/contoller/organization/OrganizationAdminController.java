@@ -23,13 +23,13 @@ public class OrganizationAdminController {
 
     @PutMapping("/{organizationId}")
     public ApiResponse<OrganizationAdminResponse> updateOrganization(
-            @PathVariable String organizationId, @RequestBody OrganizationAdminRequest request) {
+            @PathVariable Long organizationId, @RequestBody OrganizationAdminRequest request) {
         OrganizationAdminResponse response = organizationAdminService.updateOrganization(organizationId, request);
         return ApiResponse.ok(response);
     }
 
     @DeleteMapping("/{organizationId}")
-    public ApiResponse<Void> deleteOrganization(@PathVariable String organizationId) {
+    public ApiResponse<Void> deleteOrganization(@PathVariable Long organizationId) {
         organizationAdminService.deleteOrganization(organizationId);
         return ApiResponse.ok();
     }

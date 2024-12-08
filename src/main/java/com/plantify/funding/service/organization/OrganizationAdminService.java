@@ -6,6 +6,6 @@ import com.plantify.funding.domain.dto.organization.OrganizationAdminResponse;
 public interface OrganizationAdminService {
 
     OrganizationAdminResponse createOrganization(OrganizationAdminRequest request);
-    OrganizationAdminResponse updateOrganization(String organizationId, OrganizationAdminRequest request);
-    void deleteOrganization(String organizationId);
+    OrganizationAdminResponse updateOrganization(Long organizationId, OrganizationAdminRequest request);
+    void deleteOrganization(Long organizationId);
 }

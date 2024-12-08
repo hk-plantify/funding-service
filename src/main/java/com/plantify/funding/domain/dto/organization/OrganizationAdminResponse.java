@@ -3,7 +3,7 @@ package com.plantify.funding.domain.dto.organization;
 import com.plantify.funding.domain.entity.Organization;
 
 public record OrganizationAdminResponse(
-        String organizationId,
+        Long organizationId,
         String name,
         String content
 ) {

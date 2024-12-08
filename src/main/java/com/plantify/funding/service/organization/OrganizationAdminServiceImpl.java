@@ -2,7 +2,6 @@ package com.plantify.funding.service.organization;
 
 import com.plantify.funding.domain.dto.organization.OrganizationAdminRequest;
 import com.plantify.funding.domain.dto.organization.OrganizationAdminResponse;
-import com.plantify.funding.domain.dto.organization.OrganizationUserResponse;
 import com.plantify.funding.domain.entity.Organization;
 import com.plantify.funding.global.exception.ApplicationException;
 import com.plantify.funding.global.exception.errorcode.OrganizationErrorCode;
@@ -24,7 +23,7 @@ public class OrganizationAdminServiceImpl implements OrganizationAdminService {
     }
 
     @Override
-    public OrganizationAdminResponse updateOrganization(String organizationId, OrganizationAdminRequest request) {
+    public OrganizationAdminResponse updateOrganization(Long organizationId, OrganizationAdminRequest request) {
         Organization organization = organizationRepository.findById(organizationId)
                 .orElseThrow(() -> new ApplicationException(OrganizationErrorCode.ORGANIZATION_NOT_FOUND));
 
@@ -38,7 +37,7 @@ public class OrganizationAdminServiceImpl implements OrganizationAdminService {
     }
 
     @Override
-    public void deleteOrganization(String organizationId) {
+    public void deleteOrganization(Long organizationId) {
         Organization organization = organizationRepository.findById(organizationId)
                 .orElseThrow(() -> new ApplicationException(OrganizationErrorCode.ORGANIZATION_NOT_FOUND));
         organizationRepository.delete(organization);
