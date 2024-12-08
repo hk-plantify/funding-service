@@ -24,7 +24,7 @@ public class MyFundingAdminServiceImpl implements MyFundingAdminService {
     }
 
     @Override
-    public MyFundingAdminResponse getMyFundingDetails(String myFundingId) {
+    public MyFundingAdminResponse getMyFundingDetails(Long myFundingId) {
         MyFunding myFunding = myFundingRepository.findById(myFundingId)
                 .orElseThrow(() -> new ApplicationException(MyFundingErrorCode.FUNDING_NOT_FOUND));
         return MyFundingAdminResponse.from(myFunding);

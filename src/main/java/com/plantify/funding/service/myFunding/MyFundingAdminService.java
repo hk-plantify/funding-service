@@ -7,6 +7,6 @@ import java.util.List;
 public interface MyFundingAdminService {
 
     List<MyFundingAdminResponse> getAllFunding();
-    MyFundingAdminResponse getMyFundingDetails(String myFundingId);
+    MyFundingAdminResponse getMyFundingDetails(Long myFundingId);
     List<MyFundingAdminResponse> getUserFunding(Long userId);
 }

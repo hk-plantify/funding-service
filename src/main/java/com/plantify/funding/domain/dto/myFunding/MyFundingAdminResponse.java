@@ -6,11 +6,10 @@ import com.plantify.funding.domain.entity.Status;
 import java.time.LocalDateTime;
 
 public record MyFundingAdminResponse(
-        String myFundingId,
+        Long myFundingId,
         Long userId,
-        String fundingId,
+        Long fundingId,
         Long price,
-        Status status,
         LocalDateTime createdAt,
         LocalDateTime updatedAt
 ) {
@@ -18,9 +17,8 @@ public record MyFundingAdminResponse(
         return new MyFundingAdminResponse(
                 myFunding.getMyFundingId(),
                 myFunding.getUserId(),
-                myFunding.getFundingId(),
+                myFunding.getFunding().getFundingId(),
                 myFunding.getPrice(),
-                myFunding.getStatus(),
                 myFunding.getCreatedAt(),
                 myFunding.getUpdatedAt()
         );

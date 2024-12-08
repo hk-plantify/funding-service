@@ -24,7 +24,7 @@ public class MyFundingAdminController {
 
     // 특정 참여 펀딩 상세 조회
     @GetMapping("/{myFundingId}")
-    public ApiResponse<MyFundingAdminResponse> getMyFundingDetails(@PathVariable String myFundingId) {
+    public ApiResponse<MyFundingAdminResponse> getMyFundingDetails(@PathVariable Long myFundingId) {
         MyFundingAdminResponse response = myFundingAdminService.getMyFundingDetails(myFundingId);
         return ApiResponse.ok(response);
     }
