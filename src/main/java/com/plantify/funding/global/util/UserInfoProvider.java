@@ -1,4 +1,4 @@
-package com.plantify.funding.util;
+package com.plantify.funding.global.util;
 
 import com.plantify.funding.domain.dto.AuthUserResponse;
 import com.plantify.funding.global.exception.ApplicationException;
@@ -24,4 +24,5 @@ public class UserInfoProvider {
 
         return new AuthUserResponse(userId, role);
     }
+
 }
