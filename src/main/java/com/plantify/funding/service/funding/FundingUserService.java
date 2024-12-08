@@ -8,6 +8,6 @@ import org.springframework.data.domain.Pageable;
 public interface FundingUserService {
 
     Page<FundingUserResponse> getAllFunding(Pageable pageable);
-    FundingUserResponse getFundingById(String fundingId);
+    FundingUserResponse getFundingById(Long fundingId);
     Page<FundingUserResponse> getFundingByCategory(Category category, Pageable pageable);
 }

@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 import java.util.Date;
 
 public record FundingUserResponse(
-        String fundingId,
+        Long fundingId,
         String title,
         String content,
         String image,
@@ -20,7 +20,8 @@ public record FundingUserResponse(
         LocalDateTime fundingStartDate,
         LocalDateTime fundingEndDate,
         LocalDateTime donationStartDate,
-        LocalDateTime donationEndDate
+        LocalDateTime donationEndDate,
+        String organizationName
 ) {
     public static FundingUserResponse from(Funding funding) {
         return new FundingUserResponse(
@@ -36,7 +37,8 @@ public record FundingUserResponse(
                 funding.getFundingStartDate(),
                 funding.getFundingEndDate(),
                 funding.getDonationStartDate(),
-                funding.getDonationEndDate()
+                funding.getDonationEndDate(),
+                funding.getOrganization().getName()
         );
     }
 }

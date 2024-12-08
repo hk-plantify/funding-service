@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("v1/funding")
@@ -29,7 +28,7 @@ public class FundingUserController {
 
     // 특정 펀딩 조회
     @GetMapping("/{fundingId}")
-    public ApiResponse<FundingUserResponse> getFundingById(@PathVariable String fundingId) {
+    public ApiResponse<FundingUserResponse> getFundingById(@PathVariable Long fundingId) {
         FundingUserResponse response = fundingUserService.getFundingById(fundingId);
         return ApiResponse.ok(response);
     }

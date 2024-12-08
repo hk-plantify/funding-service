@@ -5,9 +5,8 @@ import com.plantify.funding.domain.entity.Funding;
 import com.plantify.funding.domain.entity.Status;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
-public record FundingAdminResponse(
+public record FundingResponse(
         Long fundingId,
         String title,
         String content,
@@ -20,11 +19,10 @@ public record FundingAdminResponse(
         LocalDateTime fundingStartDate,
         LocalDateTime fundingEndDate,
         LocalDateTime donationStartDate,
-        LocalDateTime donationEndDate,
-        String organizationName
+        LocalDateTime donationEndDate
 ) {
-    public static FundingAdminResponse from(Funding funding) {
-        return new FundingAdminResponse(
+    public static FundingResponse from(Funding funding) {
+        return new FundingResponse(
                 funding.getFundingId(),
                 funding.getTitle(),
                 funding.getContent(),
@@ -37,8 +35,7 @@ public record FundingAdminResponse(
                 funding.getFundingStartDate(),
                 funding.getFundingEndDate(),
                 funding.getDonationStartDate(),
-                funding.getDonationEndDate(),
-                funding.getOrganization().getName()
+                funding.getDonationEndDate()
         );
     }
 }

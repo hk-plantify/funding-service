@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class FundingUserServiceImpl implements FundingUserService, InternalService {
+public class FundingUserServiceImpl implements FundingUserService {
 
     private final FundingRepository fundingRepository;
 
@@ -24,7 +24,7 @@ public class FundingUserServiceImpl implements FundingUserService, InternalServi
     }
 
     @Override
-    public FundingUserResponse getFundingById(String fundingId) {
+    public FundingUserResponse getFundingById(Long fundingId) {
         Funding funding = fundingRepository.findById(fundingId)
                 .orElseThrow(() -> new ApplicationException(FundingErrorCode.FUNDING_NOT_FOUND));
         return FundingUserResponse.from(funding);
@@ -34,16 +34,5 @@ public class FundingUserServiceImpl implements FundingUserService, InternalServi
     public Page<FundingUserResponse> getFundingByCategory(Category category, Pageable pageable) {
         return fundingRepository.findByCategory(category, pageable)
                 .map(FundingUserResponse::from);
-    }
-
-    @Override
-    public void updateFundingAmount(String fundingId, Long amount) {
-        Funding funding = fundingRepository.findById(fundingId)
-                .orElseThrow(() -> new ApplicationException(FundingErrorCode.FUNDING_NOT_FOUND));
-        Funding updatedFunding = funding.toBuilder()
-                .curAmount(funding.getCurAmount() + amount)
-                .build();
-
-        fundingRepository.save(updatedFunding);
     }
 }

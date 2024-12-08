@@ -20,37 +20,35 @@ public class FundingAdminServiceImpl implements FundingAdminService {
     public FundingAdminResponse createFunding(FundingAdminRequest request) {
         Funding funding = request.toEntity();
         Funding savedFunding = fundingRepository.save(funding);
+
         return FundingAdminResponse.from(savedFunding);
     }
 
     @Override
-    public FundingAdminResponse updateFunding(String fundingId, FundingAdminRequest request) {
+    public FundingAdminResponse updateFunding(Long fundingId, FundingAdminRequest request) {
         Funding funding = fundingRepository.findById(fundingId)
                 .orElseThrow(() -> new ApplicationException(FundingErrorCode.FUNDING_NOT_FOUND));
 
         Funding updatedFunding = request.updatedFunding(funding);
-
         fundingRepository.save(updatedFunding);
+
         return FundingAdminResponse.from(updatedFunding);
     }
 
     @Override
-    public void deleteFunding(String fundingId) {
+    public void deleteFunding(Long fundingId) {
         Funding funding = fundingRepository.findById(fundingId)
                 .orElseThrow(() -> new ApplicationException(FundingErrorCode.FUNDING_NOT_FOUND));
         fundingRepository.delete(funding);
     }
 
     @Override
-    public FundingAdminResponse updateFundingStatus(String fundingId, Status status) {
+    public FundingAdminResponse updateFundingStatus(Long fundingId, Status status) {
         Funding funding = fundingRepository.findById(fundingId)
-                .orElseThrow(() -> new ApplicationException(FundingErrorCode.FUNDING_NOT_FOUND));
+                .orElseThrow(() -> new ApplicationException(FundingErrorCode.FUNDING_NOT_FOUND))
+                        .updateStatus(status);
+        fundingRepository.save(funding);
 
-        Funding updatedFunding = funding.toBuilder()
-                .status(status)
-                .build();
-
-        fundingRepository.save(updatedFunding);
-        return FundingAdminResponse.from(updatedFunding);
+        return FundingAdminResponse.from(funding);
     }
 }

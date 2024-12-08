@@ -25,14 +25,14 @@ public class FundingAdminController {
     // 펀딩 수정
     @PutMapping("/{fundingId}")
     public ApiResponse<FundingAdminResponse> updateFunding(
-            @PathVariable String fundingId, @RequestBody FundingAdminRequest request) {
+            @PathVariable Long fundingId, @RequestBody FundingAdminRequest request) {
         FundingAdminResponse response = fundingAdminService.updateFunding(fundingId, request);
         return ApiResponse.ok(response);
     }
 
     // 펀딩 삭제
     @DeleteMapping("/{fundingId}")
-    public ApiResponse<Void> deleteFunding(@PathVariable String fundingId) {
+    public ApiResponse<Void> deleteFunding(@PathVariable Long fundingId) {
         fundingAdminService.deleteFunding(fundingId);
         return ApiResponse.ok();
     }
@@ -40,7 +40,7 @@ public class FundingAdminController {
     // 펀딩 상태 변경
     @PutMapping("/{fundingId}/status")
     public ApiResponse<FundingAdminResponse> updateFundingStatus(
-            @PathVariable String fundingId, @RequestParam Status status) {
+            @PathVariable Long fundingId, @RequestParam Status status) {
         FundingAdminResponse response = fundingAdminService.updateFundingStatus(fundingId, status);
         return ApiResponse.ok(response);
     }
