@@ -26,7 +26,7 @@ public class SecurityConfig {
                                 "/v3/api-docs/**",
                                 "/swagger-ui.html",
                                 "/v1/admin/**",
-                                ""
+                                "/"
                         ).permitAll()
                         .requestMatchers("v1/funding/my-funding", "/v1/funding/my-funding/**")
                         .hasAnyRole("USER")
