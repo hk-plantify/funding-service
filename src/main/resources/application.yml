@@ -20,7 +20,7 @@ spring:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
 auth:
   service:
-    url: http://auth-service.auth.svc:8080
+    url: http://localhost:8888
 pay:
   service:
-    url: http://pay-service.pay.svc:8080
+    url: http://localhost:1111

@@ -28,11 +28,6 @@ public class MyFunding extends BaseEntity {
     @JoinColumn(name = "fundingId", nullable = false)
     private Funding funding;
 
-    public MyFunding participation(long price) {
-        this.price += price;
-        return this;
-    }
-
     public MyFunding cancellation(long price) {
         this.price -= price;
         return this;

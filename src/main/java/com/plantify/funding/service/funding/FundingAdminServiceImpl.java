@@ -3,10 +3,13 @@ package com.plantify.funding.service.funding;
 import com.plantify.funding.domain.dto.funding.FundingAdminRequest;
 import com.plantify.funding.domain.dto.funding.FundingAdminResponse;
 import com.plantify.funding.domain.entity.Funding;
+import com.plantify.funding.domain.entity.Organization;
 import com.plantify.funding.domain.entity.Status;
 import com.plantify.funding.global.exception.ApplicationException;
 import com.plantify.funding.global.exception.errorcode.FundingErrorCode;
+import com.plantify.funding.global.exception.errorcode.OrganizationErrorCode;
 import com.plantify.funding.repository.FundingRepository;
+import com.plantify.funding.repository.OrganizationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,10 +18,14 @@ import org.springframework.stereotype.Service;
 public class FundingAdminServiceImpl implements FundingAdminService {
 
     private final FundingRepository fundingRepository;
+    private final OrganizationRepository organizationRepository;
 
     @Override
     public FundingAdminResponse createFunding(FundingAdminRequest request) {
-        Funding funding = request.toEntity();
+        Organization organization = organizationRepository.findByName(request.organizationName())
+                .orElseThrow(() -> new ApplicationException(OrganizationErrorCode.ORGANIZATION_NOT_FOUND));
+
+        Funding funding = request.toEntity(organization);
         Funding savedFunding = fundingRepository.save(funding);
 
         return FundingAdminResponse.from(savedFunding);

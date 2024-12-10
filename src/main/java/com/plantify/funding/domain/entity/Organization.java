@@ -21,6 +21,6 @@ public class Organization extends BaseEntity {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
+    @Column
     private String content;
 }

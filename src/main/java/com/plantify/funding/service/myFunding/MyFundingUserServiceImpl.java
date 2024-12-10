@@ -56,18 +56,15 @@ public class MyFundingUserServiceImpl implements MyFundingUserService {
         TransactionRequest transactionRequest = new TransactionRequest(
                 userId,
                 1L,
-                1L,
                 funding.getTitle(),
                 request.price(),
                 "PAYMENT",
-                null,
-                request.pointToUse()
+                null
         );
 
         payServiceClient.payment(transactionRequest);
 
-        MyFunding myFunding = request.toEntity(userId)
-                        .participation(request.price());
+        MyFunding myFunding = request.toEntity(userId, funding);
         MyFunding savedFunding = myFundingRepository.save(myFunding);
         funding.increase(request.price());
 

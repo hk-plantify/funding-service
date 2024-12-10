@@ -2,6 +2,7 @@ package com.plantify.funding.domain.dto.funding;
 
 import com.plantify.funding.domain.entity.Category;
 import com.plantify.funding.domain.entity.Funding;
+import com.plantify.funding.domain.entity.Organization;
 import com.plantify.funding.domain.entity.Status;
 
 import java.time.LocalDateTime;
@@ -18,10 +19,11 @@ public record FundingAdminRequest(
         LocalDateTime fundingStartDate,
         LocalDateTime fundingEndDate,
         LocalDateTime donationStartDate,
-        LocalDateTime donationEndDate
+        LocalDateTime donationEndDate,
+        String organizationName
 ) {
 
-    public Funding toEntity() {
+    public Funding toEntity(Organization organization) {
         return Funding.builder()
                 .title(title)
                 .content(content)
@@ -35,6 +37,7 @@ public record FundingAdminRequest(
                 .fundingEndDate(fundingEndDate)
                 .donationStartDate(donationStartDate)
                 .donationEndDate(donationEndDate)
+                .organization(organization)
                 .build();
     }
 
