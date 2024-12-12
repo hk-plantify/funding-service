@@ -31,10 +31,16 @@ public class MyFundingUserController {
         return ApiResponse.ok(response);
     }
 
-    // 펀딩에 참여
+    // 펀딩 참여
     @PostMapping
-    public ApiResponse<MyFundingUserResponse> createMyFunding(@RequestBody MyFundingUserRequest request) {
-        MyFundingUserResponse response = myFundingUserService.participate(request);
+    public ApiResponse<Void> createMyFunding(@RequestBody MyFundingUserRequest request) {
+        myFundingUserService.participate(request);
+        return ApiResponse.ok();
+    }
+
+    @GetMapping("/callback")
+    public ApiResponse<MyFundingUserResponse> getMyFundingUserCallback(@RequestParam String orderId) {
+        MyFundingUserResponse response = myFundingUserService.callbackParticipate(orderId);
         return ApiResponse.ok(response);
     }
 

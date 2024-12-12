@@ -1,7 +1,6 @@
 package com.plantify.funding.domain.dto.myFunding;
 
 import com.plantify.funding.domain.entity.MyFunding;
-import com.plantify.funding.domain.entity.Status;
 
 import java.time.LocalDateTime;
 

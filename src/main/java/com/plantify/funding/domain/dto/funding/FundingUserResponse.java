@@ -21,6 +21,7 @@ public record FundingUserResponse(
         LocalDateTime fundingEndDate,
         LocalDateTime donationStartDate,
         LocalDateTime donationEndDate,
+        Long organizationId,
         String organizationName
 ) {
     public static FundingUserResponse from(Funding funding) {
@@ -38,6 +39,7 @@ public record FundingUserResponse(
                 funding.getFundingEndDate(),
                 funding.getDonationStartDate(),
                 funding.getDonationEndDate(),
+                funding.getOrganization().getOrganizationId(),
                 funding.getOrganization().getName()
         );
     }
