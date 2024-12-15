@@ -1,12 +1,11 @@
 package com.plantify.funding.domain.dto.myFunding;
 
-public record TransactionRequest(
+public record PendingTransactionRequest(
         Long userId,
         Long sellerId,
         String orderName,
         Long amount,
-        String transactionType,
-        String reason,
+        String status,
         String redirectUri
 ) {
 }

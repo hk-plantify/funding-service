@@ -50,16 +50,15 @@ public class MyFundingUserServiceImpl implements MyFundingUserService {
         Funding funding = fundingRepository.findById(request.fundingId())
                 .orElseThrow(() -> new ApplicationException(FundingErrorCode.FUNDING_NOT_FOUND));
 
-        TransactionRequest transactionRequest = new TransactionRequest(
+        PendingTransactionRequest pendingTransactionRequest = new PendingTransactionRequest(
                 userId,
                 1L,
                 funding.getTitle(),
                 request.price(),
                 "PAYMENT",
-                null,
                 "https://plantify.co.kr/v1/funding/my-funding/callback"
         );
-        payServiceClient.payment(transactionRequest);
+        payServiceClient.payment(pendingTransactionRequest);
     }
 
     @Override
