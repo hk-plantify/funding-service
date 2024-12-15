@@ -10,12 +10,10 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler {
-
+    
     @ExceptionHandler(ApplicationException.class)
-    public ResponseEntity<ApiResponse<Void>> handleApplicationException(ApplicationException e) {
-        HttpStatus status = e.getHttpStatus();
-        ApiResponse<Void> response = ApiResponse.fail(status, e.getMessage());
-        return ResponseEntity.status(status).body(response);
+    public ApiResponse<Void> handleApplicationException(ApplicationException e) {
+        return ApiResponse.fail(e.getHttpStatus(), e.getMessage());
     }
 
     @ExceptionHandler(Exception.class)
