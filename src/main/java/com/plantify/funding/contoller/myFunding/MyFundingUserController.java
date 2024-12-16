@@ -42,13 +42,17 @@ public class MyFundingUserController {
     }
 
     // 펀딩 참여
-    @PostMapping
-    public Map<String, String> createMyFunding(@RequestBody MyFundingUserRequest request) {
-        String redirectUrl = myFundingUserService.participate(request);
+    @RestController
+    public class MyFundingController {
+        @PostMapping
+        public ResponseEntity<Void> createMyFunding(@RequestBody MyFundingUserRequest request) {
+            String redirectUrl = myFundingUserService.participate(request);
 
-        Map<String, String> response = new HashMap<>();
-        response.put("redirectUrl", redirectUrl);
-        return response;
+            return ResponseEntity
+                    .status(HttpStatus.FOUND)
+                    .location(URI.create(redirectUrl))
+                    .build();
+        }
     }
 
     @GetMapping("/callback")
