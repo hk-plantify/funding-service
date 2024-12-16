@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.net.URI;
+import java.util.HashMap;
+import java.util.Map;
 
 
 @RestController
@@ -41,10 +43,12 @@ public class MyFundingUserController {
 
     // 펀딩 참여
     @PostMapping
-    public void createMyFunding(
-            @RequestBody MyFundingUserRequest request, HttpServletResponse response) throws IOException {
+    public Map<String, String> createMyFunding(@RequestBody MyFundingUserRequest request) {
         String redirectUrl = myFundingUserService.participate(request);
-        response.sendRedirect(redirectUrl);
+
+        Map<String, String> response = new HashMap<>();
+        response.put("redirectUrl", redirectUrl);
+        return response;
     }
 
     @GetMapping("/callback")
