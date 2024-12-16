@@ -59,7 +59,7 @@ public class MyFundingUserServiceImpl implements MyFundingUserService {
                 "PAYMENT",
                 request.redirectUri()
         );
-        payServiceClient.payment(pendingTransactionRequest);
+        payServiceClient.initiatePayment(pendingTransactionRequest);
     }
 
     @Override
