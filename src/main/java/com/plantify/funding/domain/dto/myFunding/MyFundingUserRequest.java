@@ -5,7 +5,8 @@ import com.plantify.funding.domain.entity.MyFunding;
 
 public record MyFundingUserRequest(
         Long fundingId,
-        Long price
+        Long price,
+        String redirectUri
 ) {
     public MyFunding toEntity(Long userId, Funding funding) {
         return MyFunding.builder()

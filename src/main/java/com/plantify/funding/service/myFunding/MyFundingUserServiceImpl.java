@@ -11,6 +11,7 @@ import com.plantify.funding.repository.FundingRepository;
 import com.plantify.funding.repository.MyFundingRepository;
 import com.plantify.funding.global.util.UserInfoProvider;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -56,7 +57,7 @@ public class MyFundingUserServiceImpl implements MyFundingUserService {
                 funding.getTitle(),
                 request.price(),
                 "PAYMENT",
-                "https://plantify.co.kr/v1/funding/my-funding/callback"
+                request.redirectUri()
         );
         payServiceClient.payment(pendingTransactionRequest);
     }
@@ -69,7 +70,7 @@ public class MyFundingUserServiceImpl implements MyFundingUserService {
         Funding funding = fundingRepository.findByTitle(response.orderName())
                 .orElseThrow(() -> new ApplicationException(FundingErrorCode.FUNDING_NOT_FOUND));
 
-        MyFundingUserRequest request = new MyFundingUserRequest(funding.getFundingId(), response.amount());
+        MyFundingUserRequest request = new MyFundingUserRequest(funding.getFundingId(), response.amount(), null);
         MyFunding myFunding = request.toEntity(userId, funding);
         MyFunding savedFunding = myFundingRepository.save(myFunding);
 
