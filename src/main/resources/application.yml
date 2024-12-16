@@ -18,22 +18,15 @@ spring:
       ddl-auto: update
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-#auth:
-#  service:
-#    url: http://auth-service.auth.svc.cluster.local:8080
-#pay:
-#  service:
-#    url: http://pay-service.pay.svc.cluster.local:8080
+auth:
+  service:
+    url: http://auth-service.auth.svc.cluster.local:8080
+pay:
+  service:
+    url: http://pay-service.pay.svc.cluster.local:8080
 
 client:
   base:
     url: ENC(6glvmh8vfHd2D/ALcgqR+tXcm+DH+AZbkofU7nK5p2eE0RzPXoNE1uHTORYrT/dA)
   pay:
     url: ENC(YKKOs+X8eUEdzzngWa8yjQlR4W0uy69aKFe1AMAee9FP2nauBEWpCM6FyDXpbIprBGi7LReqA4M=)
-
-auth:
-  service:
-    url: http://localhost:8888
-pay:
-  service:
-    url: http://localhost:2222
