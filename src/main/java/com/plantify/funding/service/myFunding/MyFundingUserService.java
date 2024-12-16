@@ -10,7 +10,7 @@ public interface MyFundingUserService {
 
     Page<MyFundingDetailResponse> getMyFunding(Pageable pageable);
     MyFundingDetailResponse getMyFundingDetails(Long myFundingId);
-    void participate(MyFundingUserRequest request);
+    String participate(MyFundingUserRequest request);
     MyFundingUserResponse callbackParticipate(String orderId);
     MyFundingUserResponse cancel(Long myFundingId, MyFundingUserRequest request);
 }

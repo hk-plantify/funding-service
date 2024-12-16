@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface PayServiceClient {
 
     @PostMapping("/v1/pay/payment")
-    void initiatePayment(@RequestBody PendingTransactionRequest request);
+    ResponseEntity<String> initiatePayment(@RequestBody PendingTransactionRequest request);
 
     @GetMapping("/v1/pay/settlements/external")
     ResponseEntity<ExternalSettlementResponse> getSettlementByOrderId(@RequestParam String orderId);

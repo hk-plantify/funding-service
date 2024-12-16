@@ -52,13 +52,11 @@ public class SecurityConfig {
         return http.build();
     }
 
-
     @Value("${client.base.url}")
     private String clientBaseUrl;
 
     @Value("${client.pay.url}")
     private String clientPayUrl;
-
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {

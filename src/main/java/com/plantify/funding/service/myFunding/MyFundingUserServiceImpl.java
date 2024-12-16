@@ -11,9 +11,9 @@ import com.plantify.funding.repository.FundingRepository;
 import com.plantify.funding.repository.MyFundingRepository;
 import com.plantify.funding.global.util.UserInfoProvider;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -46,7 +46,7 @@ public class MyFundingUserServiceImpl implements MyFundingUserService {
 
     @Override
     @Transactional
-    public void participate(MyFundingUserRequest request) {
+    public String participate(MyFundingUserRequest request) {
         Long userId = userInfoProvider.getUserInfo().userId();
         Funding funding = fundingRepository.findById(request.fundingId())
                 .orElseThrow(() -> new ApplicationException(FundingErrorCode.FUNDING_NOT_FOUND));
@@ -56,10 +56,9 @@ public class MyFundingUserServiceImpl implements MyFundingUserService {
                 1L,
                 funding.getTitle(),
                 request.price(),
-                "PAYMENT",
                 request.redirectUri()
         );
-        payServiceClient.initiatePayment(pendingTransactionRequest);
+        return payServiceClient.initiatePayment(pendingTransactionRequest).getBody();
     }
 
     @Override

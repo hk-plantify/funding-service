@@ -5,7 +5,6 @@ public record PendingTransactionRequest(
         Long sellerId,
         String orderName,
         Long amount,
-        String status,
         String redirectUri
 ) {
 }

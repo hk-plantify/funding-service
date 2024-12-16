@@ -5,10 +5,13 @@ import com.plantify.funding.domain.dto.myFunding.MyFundingUserRequest;
 import com.plantify.funding.domain.dto.myFunding.MyFundingUserResponse;
 import com.plantify.funding.global.response.ApiResponse;
 import com.plantify.funding.service.myFunding.MyFundingUserService;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.IOException;
 
 @RestController
 @RequiredArgsConstructor
@@ -33,9 +36,10 @@ public class MyFundingUserController {
 
     // 펀딩 참여
     @PostMapping
-    public ApiResponse<Void> createMyFunding(@RequestBody MyFundingUserRequest request) {
-        myFundingUserService.participate(request);
-        return ApiResponse.ok();
+    public void createMyFunding(
+            @RequestBody MyFundingUserRequest request, HttpServletResponse response) throws IOException {
+        String redirectUrl = myFundingUserService.participate(request);
+        response.sendRedirect(redirectUrl);
     }
 
     @GetMapping("/callback")
