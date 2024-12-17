@@ -11,12 +11,13 @@ import com.plantify.funding.repository.FundingRepository;
 import com.plantify.funding.repository.MyFundingRepository;
 import com.plantify.funding.global.util.UserInfoProvider;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class MyFundingUserServiceImpl implements MyFundingUserService {
@@ -58,7 +59,10 @@ public class MyFundingUserServiceImpl implements MyFundingUserService {
                 request.price(),
                 request.redirectUri()
         );
-        return payServiceClient.initiatePayment(pendingTransactionRequest).getBody();
+        String payRedirectUrl = payServiceClient.initiatePayment(pendingTransactionRequest).getBody();
+        log.info("payRedirectUrl: {}", payRedirectUrl);
+
+        return payRedirectUrl;
     }
 
     @Override

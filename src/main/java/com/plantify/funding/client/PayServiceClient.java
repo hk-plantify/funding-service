@@ -2,6 +2,7 @@ package com.plantify.funding.client;
 
 import com.plantify.funding.domain.dto.myFunding.ExternalSettlementResponse;
 import com.plantify.funding.domain.dto.myFunding.PendingTransactionRequest;
+import com.plantify.funding.global.response.ApiResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
