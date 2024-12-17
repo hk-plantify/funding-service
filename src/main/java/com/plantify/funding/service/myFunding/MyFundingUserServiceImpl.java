@@ -59,10 +59,10 @@ public class MyFundingUserServiceImpl implements MyFundingUserService {
                 request.price(),
                 request.redirectUri()
         );
-        String payRedirectUrl = payServiceClient.initiatePayment(pendingTransactionRequest).getBody();
-        log.info("payRedirectUrl: {}", payRedirectUrl);
+        PaymentResponse paymentResponse = payServiceClient.initiatePayment(pendingTransactionRequest).getBody();
 
-        return payRedirectUrl;
+        log.info("token: {}", paymentResponse.token());
+        return paymentResponse.token();
     }
 
     @Override

@@ -44,11 +44,9 @@ public class MyFundingUserController {
 
     // 펀딩 참여
     @PostMapping
-    public void createMyFunding(
-            @RequestBody MyFundingUserRequest request, HttpServletResponse response) throws IOException {
-        String payRedirectUrl = myFundingUserService.participate(request);
-        response.setStatus(HttpServletResponse.SC_FOUND);
-        response.sendRedirect(payRedirectUrl);
+    public ApiResponse<String> createMyFunding(@RequestBody MyFundingUserRequest request) {
+        String token = myFundingUserService.participate(request);
+        return ApiResponse.ok(token);
     }
 
     @GetMapping("/callback")
