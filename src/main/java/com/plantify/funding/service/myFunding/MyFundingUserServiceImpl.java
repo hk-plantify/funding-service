@@ -59,7 +59,7 @@ public class MyFundingUserServiceImpl implements MyFundingUserService {
                 request.price(),
                 request.redirectUri()
         );
-        String token = payServiceClient.initiatePayment(pendingTransactionRequest).getBody();
+        String token = payServiceClient.initiatePayment(pendingTransactionRequest);
 
         log.info("token: {}", token);
         return token;
